@@ -261,4 +261,7 @@ form button:active {
   .container {
     font-size: 14px;
   }
+  .hidden {
+    display: none;
+  }
 }
