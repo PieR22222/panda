@@ -813,12 +813,3 @@ const toggleSound = () => {
 };
 
 el.sound.addEventListener("click", toggleSound());
-
-document.addEventListener("DOMContentLoaded", function () {
-    const loginButton = document.querySelector("button");
-
-    loginButton.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent default form submission
-        window.location.href = "dashboard.html"; // Redirect to dashboard
-    });
-});
