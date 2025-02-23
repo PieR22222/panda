@@ -23,6 +23,18 @@ setInterval(changeText, 2000);
 function showAnimationPage(event) {
     event.preventDefault(); // Prevent form submission
 
-    document.getElementById("loginPage").classList.add("hidden"); // Hide login
-    document.getElementById("animationPage").classList.remove("hidden"); // Show animation
+    const loginPage = document.getElementById("loginPage");
+    const animationPage = document.getElementById("animationPage");
+    const body = document.getElementById("body");
+
+    // Smooth fade-out of login and fade-in animation page
+    loginPage.classList.add("fade-out");
+    setTimeout(() => {
+        loginPage.classList.add("hidden"); // Hide after fade-out
+        animationPage.classList.remove("hidden"); // Show new page
+        animationPage.classList.add("fade-in");
+
+        // Change background color for animation page
+        body.style.backgroundColor = "#0f172a"; // New background
+    }, 800); // Match fade-out duration
 }
