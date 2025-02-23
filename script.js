@@ -1,40 +1,68 @@
-const textElement = document.getElementById("changingText");
-const words = ["I LOVE YOU", "I ❤️ YOU", "I ❤️ U", "❤️"]; // Correct order
-let index = 0;
+let usernameRef = document.getElementById("username");
+let passwordRef = document.getElementById("password");
+let eyeL = document.querySelector(".eyeball-l");
+let eyeR = document.querySelector(".eyeball-r");
+let handL = document.querySelector(".hand-l");
+let handR = document.querySelector(".hand-r");
 
-function changeText() {
-    textElement.classList.add("transition-out"); // Start shrinking
+let normalEyeStyle = () => {
+  eyeL.style.cssText = `
+    left:0.6em;
+    top: 0.6em;
+  `;
+  eyeR.style.cssText = `
+  right:0.6em;
+  top:0.6em;
+  `;
+};
 
-    setTimeout(() => {
-        index = (index + 1) % words.length;
-        textElement.innerText = words[index];
-        textElement.classList.remove("transition-out");
-        textElement.classList.add("transition-in"); // Expand smoothly
-    }, 500); // Mid-animation point
-
-    setTimeout(() => {
-        textElement.classList.remove("transition-in"); // Reset state
-    }, 1000);
-}
-
-setInterval(changeText, 2000);
-
-// Function to Switch from Login Page to Animation Page
-function showAnimationPage(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const loginPage = document.getElementById("loginPage");
-    const animationPage = document.getElementById("animationPage");
-    const body = document.getElementById("body");
-
-    // Smooth fade-out of login and fade-in animation page
-    loginPage.classList.add("fade-out");
-    setTimeout(() => {
-        loginPage.classList.add("hidden"); // Hide after fade-out
-        animationPage.classList.remove("hidden"); // Show new page
-        animationPage.classList.add("fade-in");
-
-        // Change background color for animation page
-        body.style.backgroundColor = "#0f172a"; // New background
-    }, 800); // Match fade-out duration
-}
+let normalHandStyle = () => {
+  handL.style.cssText = `
+        height: 2.81em;
+        top:8.4em;
+        left:7.5em;
+        transform: rotate(0deg);
+    `;
+  handR.style.cssText = `
+        height: 2.81em;
+        top: 8.4em;
+        right: 7.5em;
+        transform: rotate(0deg)
+    `;
+};
+//When clicked on username input
+usernameRef.addEventListener("focus", () => {
+  eyeL.style.cssText = `
+    left: 0.75em;
+    top: 1.12em;  
+  `;
+  eyeR.style.cssText = `
+    right: 0.75em;
+    top: 1.12em;
+  `;
+  normalHandStyle();
+});
+//When clicked on password input
+passwordRef.addEventListener("focus", () => {
+  handL.style.cssText = `
+        height: 6.56em;
+        top: 3.87em;
+        left: 11.75em;
+        transform: rotate(-155deg);    
+    `;
+  handR.style.cssText = `
+    height: 6.56em;
+    top: 3.87em;
+    right: 11.75em;
+    transform: rotate(155deg);
+  `;
+  normalEyeStyle();
+});
+//When clicked outside username and password input
+document.addEventListener("click", (e) => {
+  let clickedElem = e.target;
+  if (clickedElem != usernameRef && clickedElem != passwordRef) {
+    normalEyeStyle();
+    normalHandStyle();
+  }
+});
