@@ -10,12 +10,25 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #0f172a;
+    background-color: #612f99; /* Background color for login */
+    transition: background-color 1s ease-in-out;
 }
 
-/* Hide Animation Page Initially */
+/* Smooth fade transitions */
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Hide but keep smooth transitions */
 .hidden {
-    display: none;
+    visibility: hidden;
+    position: absolute;
 }
 
 /* Login Page Styles */
